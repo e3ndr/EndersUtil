@@ -29,7 +29,7 @@ public class Validator {
      */
     public static boolean validateCollectionNotNull(Collection<Object> objs) {
         if (validateNotNull(objs)) {
-            return validateArrayNotNull(objs.toArray());
+            return validateArrayNotNull(objs);
         } else {
             return false;
         }

@@ -24,10 +24,11 @@ public class ThrowingValidator {
      *
      * @param error the error string
      * @param obj the object to validate
-     * @return true, if not null
+     * @return the provided object
      */
-    public static void validateNotNull(String error, Object obj) {
+    public static <T> T validateNotNull(String error, T obj) {
         validator.validateNotNull(error, obj);
+        return obj;
     }
     
     /**
@@ -35,10 +36,11 @@ public class ThrowingValidator {
      *
      * @param error the error string
      * @param objs the objects to validate
-     * @return true, if not null
+     * @return the provided object
      */
-    public static void validateCollectionNotNull(String error, Collection<Object> objs) {
-        validator.validateCollectionNotNull(error, objs);
+    public static <T> Collection<T> validateCollectionNotNull(String error, Collection<T> objs) {
+        validator.validateArrayNotNull(error, objs);
+        return objs;
     }
     
     /**
@@ -46,22 +48,11 @@ public class ThrowingValidator {
      *
      * @param error the error string
      * @param objs the objects to validate
-     * @return true, if not null
+     * @return the provided object
      */
-    public static void validateArrayNotNull(String error, Object... objs) {
+    public static <T> T[] validateArrayNotNull(String error, @SuppressWarnings("unchecked") /* ... is [] */ T... objs) {
         validator.validateArrayNotNull(error, objs);
-    }
-    
-    /**
-     * Validate equals, this is null-safe.
-     *
-     * @param error the error string
-     * @param obj1
-     * @param obj2
-     * @return true, if equal
-     */
-    public static void validateEquals(String error, Object obj1, Object obj2) {
-        validator.validateEquals(error, obj1, obj2);
+        return objs;
     }
     
     /**
@@ -70,7 +61,6 @@ public class ThrowingValidator {
      * @param error the error string
      * @param obj the obj to test
      * @param clazz the clazz to test assignment
-     * @return true, if not null
      */
     public static void validateType(String error, Object obj, Class<?> clazz) {
         validator.validateType(error, obj, clazz);
