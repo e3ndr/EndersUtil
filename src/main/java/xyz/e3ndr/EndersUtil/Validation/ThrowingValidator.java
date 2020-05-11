@@ -2,12 +2,13 @@
  * 2020 e3ndr.
  * Proudly licensed under MIT. (Don't be a dick though)
  */
-package xyz.e3ndr.EndersUtil.Validation;
+package xyz.e3ndr.EndersUtil.validation;
 
 import java.util.Collection;
 
 /**
- * The Class ThrowingValidator, this class will throw a {@link ValidationException} with the provided error. You must catch it.
+ * The Class ThrowingValidator, this class will throw a
+ * {@link ValidationException} with the provided error. You must catch it.
  */
 public class ThrowingValidator {
     private static final FailableValidator validator = new FailableValidator() {
@@ -16,9 +17,9 @@ public class ThrowingValidator {
             throw new ValidationException(error);
         }
     };
-    
+
     private ThrowingValidator() {}
-    
+
     /**
      * Validate not null.
      *
@@ -30,7 +31,7 @@ public class ThrowingValidator {
         validator.validateNotNull(error, obj);
         return obj;
     }
-    
+
     /**
      * Validate collection not null, this is null-safe.
      *
@@ -42,7 +43,7 @@ public class ThrowingValidator {
         validator.validateArrayNotNull(error, objs);
         return objs;
     }
-    
+
     /**
      * Validate array not null, this is null-safe.
      *
@@ -50,11 +51,11 @@ public class ThrowingValidator {
      * @param objs the objects to validate
      * @return the provided object
      */
-    public static <T> T[] validateArrayNotNull(String error, @SuppressWarnings("unchecked") /* ... is [] */ T... objs) {
+    public static <T> T[] validateArrayNotNull(String error, @SuppressWarnings("unchecked") T... objs) {
         validator.validateArrayNotNull(error, objs);
         return objs;
     }
-    
+
     /**
      * Validate type.
      *

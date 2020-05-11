@@ -2,7 +2,7 @@
  * 2020 e3ndr.
  * Proudly licensed under MIT. (Don't be a dick though)
  */
-package xyz.e3ndr.EndersUtil.Validation;
+package xyz.e3ndr.EndersUtil.validation;
 
 import java.util.Collection;
 
@@ -10,7 +10,7 @@ import java.util.Collection;
  * The Class Validator.
  */
 public class Validator {
-    
+
     /**
      * Validate not null.
      *
@@ -20,7 +20,7 @@ public class Validator {
     public static boolean validateNotNull(Object obj) {
         return obj != null;
     }
-    
+
     /**
      * Validate collection not null, this is null-safe.
      *
@@ -34,7 +34,7 @@ public class Validator {
             return false;
         }
     }
-    
+
     /**
      * Validate array not null, this is null-safe.
      *
@@ -46,13 +46,13 @@ public class Validator {
             for (Object obj : objs) {
                 if (obj == null) return false;
             }
-            
+
             return true;
         } else {
             return false;
         }
     }
-    
+
     /**
      * Validate equals, this is null-safe.
      *
@@ -67,7 +67,7 @@ public class Validator {
             return false;
         }
     }
-    
+
     /**
      * Validate type.
      *

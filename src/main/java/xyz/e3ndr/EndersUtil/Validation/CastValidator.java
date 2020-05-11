@@ -2,7 +2,7 @@
  * 2020 e3ndr.
  * Proudly licensed under MIT. (Don't be a dick though)
  */
-package xyz.e3ndr.EndersUtil.Validation;
+package xyz.e3ndr.EndersUtil.validation;
 
 import java.util.function.Consumer;
 
@@ -10,7 +10,7 @@ import java.util.function.Consumer;
  * The Class CastValidator.
  */
 public class CastValidator {
-    
+
     /**
      * Casts an object and passes it to a consumer.
      *
@@ -26,7 +26,7 @@ public class CastValidator {
         } else if (Validator.validateArrayNotNull(obj, clazz)) {
             try {
                 success.accept(clazz.cast(obj));
-                
+
                 return true;
             } catch (Exception e) {
                 return false;
