@@ -11,7 +11,7 @@ import lombok.SneakyThrows;
 public class AsyncCallable<T> extends Async<T> {
     private boolean set = false;
     private T value;
-    
+
     public AsyncCallable(Callable<T> callable) {
         new Thread(() -> this.run(callable)).start();
     }
@@ -20,7 +20,7 @@ public class AsyncCallable<T> extends Async<T> {
     private void run(Callable<T> callable) {
         this.value = callable.call();
         this.set = true;
-        
+
         synchronized (this) {
             this.notifyAll();
         }
@@ -30,7 +30,7 @@ public class AsyncCallable<T> extends Async<T> {
     @Override
     public synchronized T await() {
         if (!this.set) this.wait();
-        
+
         return this.value;
     }
 

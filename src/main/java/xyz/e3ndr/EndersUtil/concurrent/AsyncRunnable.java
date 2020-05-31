@@ -11,16 +11,16 @@ import lombok.SneakyThrows;
  */
 public class AsyncRunnable<T> extends Async<T> {
     private boolean set = false;
-    
+
     public AsyncRunnable(Runnable runnable) {
         new Thread(() -> this.run(runnable)).start();
     }
 
     private void run(Runnable runnable) {
         runnable.run();
-        
+
         this.set = true;
-        
+
         synchronized (this) {
             this.notifyAll();
         }
@@ -30,7 +30,7 @@ public class AsyncRunnable<T> extends Async<T> {
     @Override
     public synchronized T await() {
         if (!this.set) this.wait();
-        
+
         return null;
     }
 

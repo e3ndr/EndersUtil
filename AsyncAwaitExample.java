@@ -15,7 +15,7 @@ public class Example {
             sleep(TimeUnit.SECONDS, 2);
             return System.currentTimeMillis();
         });
-        
+
         long start = System.currentTimeMillis();
         long finish = await(time);
         

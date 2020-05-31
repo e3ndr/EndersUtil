@@ -14,7 +14,7 @@ import lombok.SneakyThrows;
  * The Class Async.
  */
 public abstract class Async<T> {
-    
+
     /**
      * Waits for the thread to complete and then returns the value.
      *
@@ -31,9 +31,10 @@ public abstract class Async<T> {
     public static Async<?> async(Runnable runnable) {
         return new AsyncRunnable<>(runnable);
     }
-    
+
     /**
-     * Creates a new async, which will return the value from the callable on completion.
+     * Creates a new async, which will return the value from the callable on
+     * completion.
      *
      * @param callable the callable to wrap
      * @return a new {@link AsyncCallable}
@@ -54,8 +55,8 @@ public abstract class Async<T> {
     }
 
     /**
-     * A convience method for {@link Async#await}
-     * <br/><br/>
+     * A convience method for {@link Async#await} <br/>
+     * <br/>
      * Waits for the thread to complete and then returns the value.
      *
      * @return the value
@@ -84,5 +85,5 @@ public abstract class Async<T> {
     public static void sleep(long millis) {
         Thread.sleep(millis);
     }
-    
+
 }
