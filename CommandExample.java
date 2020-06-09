@@ -1,4 +1,4 @@
-package xyz.e3ndr.endersutil;
+package xyz.e3ndr.endersutil.test;
 
 import lombok.SneakyThrows;
 import xyz.e3ndr.endersutil.input.Command;
