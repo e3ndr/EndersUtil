@@ -2,31 +2,9 @@
 Just a few classes I need from time to time  
 [![](https://jitpack.io/v/e3ndr/EndersUtil.svg)](https://jitpack.io/#e3ndr/EndersUtil)  
   
-## Async/Await
-```java
-package xyz.e3ndr.EndersUtil.test;
-
-import static xyz.e3ndr.EndersUtil.concurrent.Async.async;
-import static xyz.e3ndr.EndersUtil.concurrent.Async.await;
-import static xyz.e3ndr.EndersUtil.concurrent.Async.sleep;
-
-import java.util.concurrent.TimeUnit;
-
-import xyz.e3ndr.EndersUtil.concurrent.Async;
-
-public class Example {
-
-    public static void main(String[] args) {
-        Async<Long> time = async(() -> {
-            sleep(TimeUnit.SECONDS, 2);
-            return System.currentTimeMillis();
-        });
-        
-        long start = System.currentTimeMillis();
-        long finish = await(time);
-        
-        System.out.println(String.format("%d - %d = %d", finish, start, (finish - start)));
-    }
-
-}
-```
+## Examples  
+#### Async/Await  
+https://github.com/e3ndr/EndersUtil/blob/master/AsyncAwaitExample.java  
+  
+#### Command  
+https://github.com/e3ndr/EndersUtil/blob/master/CommandExample.java  
