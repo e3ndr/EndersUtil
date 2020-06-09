@@ -2,7 +2,7 @@
  * 2020 e3ndr.
  * Proudly licensed under MIT. (Don't be a dick though)
  */
-package xyz.e3ndr.EndersUtil.concurrent;
+package xyz.e3ndr.endersutil.concurrent;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;

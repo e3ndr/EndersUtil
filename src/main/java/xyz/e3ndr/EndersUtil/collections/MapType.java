@@ -1,4 +1,4 @@
-package xyz.e3ndr.EndersUtil.collections;
+package xyz.e3ndr.endersutil.collections;
 
 import java.util.HashMap;
 import java.util.Map;

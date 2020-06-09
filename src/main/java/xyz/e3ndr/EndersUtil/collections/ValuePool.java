@@ -2,7 +2,7 @@
  * 2020 e3ndr.
  * Proudly licensed under MIT. (Don't be a dick though)
  */
-package xyz.e3ndr.EndersUtil.collections;
+package xyz.e3ndr.endersutil.collections;
 
 import java.util.Arrays;
 import java.util.Collection;
