@@ -60,6 +60,8 @@ public abstract class Async<T> {
      * Waits for the thread to complete and then returns the value.
      *
      * @return the value
+     * 
+     * @throws Exception if the underlying call produces an exception
      */
     public static <T> T await(Async<T> async) {
         return async.await();

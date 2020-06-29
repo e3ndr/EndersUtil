@@ -11,26 +11,34 @@ import lombok.SneakyThrows;
  */
 public class AsyncRunnable<T> extends Async<T> {
     private boolean set = false;
+    private Exception exception;
 
     public AsyncRunnable(Runnable runnable) {
-        new Thread(() -> this.run(runnable)).start();
-    }
+        new Thread(() -> {
+            try {
+                runnable.run();
+                this.set = true;
+            } catch (Exception e) {
+                this.exception = e;
+            }
 
-    private void run(Runnable runnable) {
-        runnable.run();
-
-        this.set = true;
-
-        synchronized (this) {
-            this.notifyAll();
-        }
+            synchronized (this) {
+                this.notifyAll();
+            }
+        }).start();
     }
 
     @SneakyThrows
     @Override
     public synchronized T await() {
-        if (!this.set) this.wait();
+        if (!this.set) {
+            this.wait();
+        }
 
+        if (this.exception != null) {
+            throw this.exception;
+        }
+        
         return null;
     }
 

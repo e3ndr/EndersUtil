@@ -52,7 +52,7 @@ public class Command {
      * @return the response
      * @throws CommandExecutionException thrown when validation fails.
      */
-    public String execute(String input) throws CommandExecutionException {
+    public CommandResponse execute(String input) {
         List<String> args = new ArrayList<>();
         Matcher m = pattern.matcher(input);
 
@@ -61,22 +61,22 @@ public class Command {
         }
 
         if (args.size() < this.minimumLength) {
-            throw new CommandExecutionException("input.length");
+            return new CommandResponse(CommandError.INPUT_LENGTH);
         } else {
             for (int i = 0; (i != this.parametersRegex.length) && (i != args.size()); i++) {
                 String regex = this.parametersRegex[i];
                 String arg = args.get(i);
 
                 if (!arg.matches(regex)) {
-                    throw new CommandExecutionException("input.token", arg);
+                    return new CommandResponse(CommandError.INPUT_TOKEN, arg);
                 } else if (!this.executor.validate(arg, i)) {
-                    throw new CommandExecutionException("input.validation", arg);
+                    return new CommandResponse(CommandError.INPUT_VALIDATION, arg);
                 }
             }
 
             String[] array = args.toArray(new String[0]);
 
-            return this.executor.onCommand(array, makeString(array));
+            return new CommandResponse(this.executor.onCommand(array, makeString(array)));
         }
     }
 
