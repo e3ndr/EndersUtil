@@ -14,13 +14,13 @@ import lombok.NonNull;
 /**
  * The Class Command.
  */
-public class Command {
+public class Command<T> {
     private static final Pattern pattern = Pattern.compile("([^\"]\\S*|\".+?\")\\s*");
 
     private String[] parametersRegex;
     private String[] parameters;
     private int minimumLength;
-    private CommandExecutor executor;
+    private CommandExecutor<T> executor;
 
     /**
      * Instantiates a new command.
@@ -29,7 +29,7 @@ public class Command {
      * @param executor the executor
      * @param parameters the parameters, supports the wildcard *
      */
-    public Command(int minimumLength, @NonNull CommandExecutor executor, @NonNull String... parameters) {
+    public Command(int minimumLength, @NonNull CommandExecutor<T> executor, @NonNull String... parameters) {
         this.parametersRegex = new String[parameters.length];
         this.parameters = new String[parameters.length];
         this.minimumLength = minimumLength;
@@ -49,10 +49,11 @@ public class Command {
      * Execute.
      *
      * @param input the input
+     * @param executor the executor
      * @return the response
      * @throws CommandExecutionException thrown when validation fails.
      */
-    public CommandResponse execute(String input) {
+    public CommandResponse execute(String input, T executor) {
         List<String> args = new ArrayList<>();
         Matcher m = pattern.matcher(input);
 
@@ -69,14 +70,14 @@ public class Command {
 
                 if (!arg.matches(regex)) {
                     return new CommandResponse(CommandError.INPUT_TOKEN, arg);
-                } else if (!this.executor.validate(arg, i)) {
+                } else if (!this.executor.validate(arg, i, executor)) {
                     return new CommandResponse(CommandError.INPUT_VALIDATION, arg);
                 }
             }
 
             String[] array = args.toArray(new String[0]);
 
-            return new CommandResponse(this.executor.onCommand(array, makeString(array)));
+            return new CommandResponse(this.executor.onCommand(array, makeString(array), executor));
         }
     }
 

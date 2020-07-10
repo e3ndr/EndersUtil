@@ -38,7 +38,7 @@ public class AsyncRunnable<T> extends Async<T> {
         if (this.exception != null) {
             throw this.exception;
         }
-        
+
         return null;
     }
 

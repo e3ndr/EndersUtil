@@ -8,19 +8,19 @@ public class CommandExample {
 
     @SneakyThrows
     public static void main(String[] args) {
-        CommandExecutor executor = new CommandExecutor() {
+        CommandExecutor<?> executor = new CommandExecutor<>() {
             @Override
-            public String onCommand(String[] args, String raw) {
+            public String onCommand(String[] args, String raw, Object executor) {
                 return "Success! " + raw;
             }
         };
 
-        Command command = new Command(4, executor, "test", "*", "a", "b"); // Supports wildcards
+        Command<?> command = new Command(4, executor, "test", "*", "a", "b"); // Supports wildcards
 
-        System.out.println(command.execute("test \"very nice\" a b"));
-        System.out.println(command.execute("test somewhat_nice a b"));
-        System.out.println(command.execute("test not_nice a c"));
-        System.out.println(command.execute("test not_nice a"));
+        System.out.println(command.execute("test \"very nice\" a b", null));
+        System.out.println(command.execute("test somewhat_nice a b", null));
+        System.out.println(command.execute("test not_nice a c", null));
+        System.out.println(command.execute("test not_nice a", null));
 
         // OUTPUT:
         // Success! test very nice a b

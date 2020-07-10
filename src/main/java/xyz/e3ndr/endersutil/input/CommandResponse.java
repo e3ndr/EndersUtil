@@ -18,9 +18,13 @@ public class CommandResponse {
     public CommandResponse(String reply) {
         this.reply = reply;
     }
-    
+
     public String getErrorMessage() {
         return this.reply;
+    }
+
+    public boolean hasError() {
+        return this.error != null;
     }
 
 }
