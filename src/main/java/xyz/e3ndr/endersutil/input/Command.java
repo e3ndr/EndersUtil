@@ -68,7 +68,7 @@ public class Command<T> {
                 String regex = this.parametersRegex[i];
                 String arg = args.get(i);
 
-                if (!arg.matches(regex)) {
+                if (!arg.toLowerCase().matches(regex)) {
                     return new CommandResponse(CommandError.INPUT_TOKEN, arg);
                 } else if (!this.executor.validate(arg, i, executor)) {
                     return new CommandResponse(CommandError.INPUT_VALIDATION, arg);
