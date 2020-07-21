@@ -15,7 +15,7 @@ Just a few classes I need from time to time
         <dependency>
             <groupId>com.github.e3ndr</groupId>
             <artifactId>EndersUtil</artifactId>
-            <version>1.3.0</version>
+            <version>1.5.1</version>
         </dependency>
     </dependencies>
 ```  
